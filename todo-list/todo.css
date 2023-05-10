@@ -33,6 +33,10 @@ form {
   max-width: 100%;
   width: 400px;
 }
+.icons {
+  display: flex;
+  gap: 5px;
+}
 .input {
   border: none;
   color: #444;
@@ -69,4 +73,7 @@ small {
   color: #b5b5b5;
   margin-top: 3rem;
   text-align: center;
+}
+.todoEl {
+  display: flex;
 }

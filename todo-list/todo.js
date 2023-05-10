@@ -17,21 +17,30 @@ function addTodo() {
 
   if (todoText) {
     const todoEl = document.createElement("li");
+    todoEl.classList.add("todoEl");
+    todoUL.appendChild(todoEl);
 
     todoEl.textContent = todoText;
-    todoEl.addEventListener("click", () => {
-      todoEl.classList.toggle("completed");
-    });
-    // todoEl.addEventListener("contextmenu", (e) => {
-    //   e.preventDefault();
-    //   todoEl.remove();
 
-    // });
+    const icons = document.createElement("span");
+    icons.classList.add("icons");
+    todoEl.appendChild(icons);
+
+    const complete = document.createElement("i");
+    complete.classList.add("fa-solid");
+    complete.classList.add("fa-check");
+    icons.appendChild(complete);
+    complete.addEventListener("click", () => {
+      todoEl.classList.toggle("completed");
+      // del.remove();
+      // edit.remove();
+    });
+
     const del = document.createElement("i");
     del.classList.add("fa-solid");
     del.classList.add("fa-minus");
 
-    todoEl.appendChild(del);
+    icons.appendChild(del);
     del.addEventListener("click", () => {
       todoEl.remove();
     });
@@ -40,21 +49,22 @@ function addTodo() {
     edit.classList.add("fa-regular");
     edit.classList.add("fa-pen-to-square");
 
-    todoEl.appendChild(edit);
+    icons.appendChild(edit);
     edit.addEventListener("click", () => {
       todoEl.contentEditable = true;
       todoEl.style.backgroundColor = "#dddbdb";
       del.remove();
       edit.remove();
+      complete.remove();
       const done = document.createElement("i");
       done.classList.add("fa-solid");
       done.classList.add("fa-check");
-      todoEl.appendChild(done);
+      icons.appendChild(done);
 
       done.addEventListener("click", () => {
         todoEl.contentEditable = false;
         todoEl.style.backgroundColor = "#ffffff";
-        done.replaceWith(del, edit);
+        done.replaceWith(complete, del, edit);
       });
     });
 
@@ -62,3 +72,10 @@ function addTodo() {
     input.value = "";
   }
 }
+//   document.querySelector("input").addEventListener("submit", myfunction);
+//   todoText = localStorage.getItem("value");
+
+//   function myfunction() {
+//     let random = todoText.value;
+//     localStorage.setItem("value", `${random}`);
+//   }
